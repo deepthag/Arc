@@ -26,7 +26,7 @@ Control Schemes:
 The player will use the right and left arrow keys to determine the direction of rotation. The arc will rotate around a fixed point, following a circular path. The player can click the spacebar to pause the game, and escape to quit.  
 
 Story:
-The story aspect does not really apply to this game--it only involves moving around geometric objects. However, I would like the overall aesthetic to be 
+The story aspect does not really apply to this game--it only involves moving around geometric objects. 
 
 Art Style:
 The art style will be minimalist and sleek. I would like the game to have a simplistic, clean look. 
