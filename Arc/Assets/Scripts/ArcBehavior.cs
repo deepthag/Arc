@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ArcBehavior : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1f;
-    [SerializeField] private float _rotationRadius = 5f;
+    [SerializeField] private float _speed = 2f;
+    [SerializeField] private float _rotationRadius = 1f;
     private float _currentAngle = -Mathf.PI / 2f;
 
     public KeyCode RightDirection = KeyCode.RightArrow; 
     public KeyCode LeftDirection = KeyCode.LeftArrow; 
     
-    public Vector3 CenterPoint = new Vector3(0f, 0f, 0f);  
+    public Vector3 CenterPoint = new Vector3(0f, -3f, 0f);  
     void Start()
     {
         
