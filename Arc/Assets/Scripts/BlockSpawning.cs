@@ -5,7 +5,7 @@ public class BlockSpawning : MonoBehaviour
 {
     public GameObject blockPrefab;
     public float minWidth = 1.0f;
-    public float maxWidth = 5f;
+    public float maxWidth = 3f;
     public float fixedHeight = 0.5f;
     
     [SerializeField] private float spawnInterval = 100f; // Initial time between spawns
