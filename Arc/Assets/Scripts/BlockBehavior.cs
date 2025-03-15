@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BlockMovement : MonoBehaviour
+public class BlockBehavior : MonoBehaviour
 {
     private float speed;
 
@@ -11,7 +11,10 @@ public class BlockMovement : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        if (GameBehavior.Instance.State == Utilities.GameplayState.Play)
+        {
+            transform.position += Vector3.down * speed * Time.deltaTime;
+        }
     }
     
     private void OnCollisionEnter2D(Collision2D other) // if using box collider 2D, use 2D notification

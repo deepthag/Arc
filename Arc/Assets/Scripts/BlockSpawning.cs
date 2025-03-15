@@ -15,12 +15,24 @@ public class BlockSpawning : MonoBehaviour
     [SerializeField] private float blockSpeed = 5f;
     private float timeSinceLastSpawn;
 
-    private bool _inCoroutine = false; // safeguard coroutine using a boolean
-    void Start()
+    private bool _inCoroutine = false;
+    private bool _isSpawning = false;
+    void Update()
     {
-        StartCoroutine(SpawnBlocksCoroutine());
+        if (GameBehavior.Instance.State == Utilities.GameplayState.Play && !_isSpawning)
+        {
+            StartCoroutine(SpawnBlocksCoroutine());
+            Debug.Log("Coroutine started");
+            _isSpawning = true;
+        }
+        else if (GameBehavior.Instance.State == Utilities.GameplayState.Pause && _isSpawning)
+        {
+            StopAllCoroutines();
+            Debug.Log("Coroutine stopped");
+            _isSpawning = false;
+        }
     }
-    
+
     IEnumerator SpawnBlocksCoroutine()
     {
         _inCoroutine = true; 
@@ -30,7 +42,7 @@ public class BlockSpawning : MonoBehaviour
         SpawnRandomBlock();
 
         // Reduce spawn interval over time but keep it above minSpawnInterval
-        // currentSpawnInterval = Mathf.Max(minSpawnInterval, currentSpawnInterval * decreaseRate);
+        currentSpawnInterval = Mathf.Max(minSpawnInterval, currentSpawnInterval * decreaseRate);
             
         _inCoroutine = false;
     }
@@ -45,7 +57,7 @@ public class BlockSpawning : MonoBehaviour
         float randomWidth = Random.Range(minWidth, maxWidth);
         newBlock.transform.localScale = new Vector3(randomWidth, fixedHeight, 1); 
         
-        BlockMovement movementScript = newBlock.AddComponent<BlockMovement>();
+        BlockBehavior movementScript = newBlock.AddComponent<BlockBehavior>();
         movementScript.SetSpeed(blockSpeed);
     }
 }

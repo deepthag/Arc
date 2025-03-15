@@ -17,15 +17,18 @@ public class ArcBehavior : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKey(RightDirection))
+        if (GameBehavior.Instance.State == Utilities.GameplayState.Play)
         {
-            _currentAngle -= _speed * Time.deltaTime;
-            UpdatePosition();  
-        }
-        if (Input.GetKey(LeftDirection))
-        {
-            _currentAngle += _speed * Time.deltaTime;
-            UpdatePosition(); 
+            if (Input.GetKey(RightDirection))
+            {
+                _currentAngle -= _speed * Time.deltaTime;
+                UpdatePosition();  
+            }
+            if (Input.GetKey(LeftDirection))
+            {
+                _currentAngle += _speed * Time.deltaTime;
+                UpdatePosition(); 
+            }
         }
     }
     
