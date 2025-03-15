@@ -8,11 +8,11 @@ public class BlockSpawning : MonoBehaviour
     public float maxWidth = 3f;
     public float fixedHeight = 0.5f;
     
-    [SerializeField] private float spawnInterval = 100f; // Initial time between spawns
-    private float minSpawnInterval = 10f; // Minimum time between spawns
+    [SerializeField] private float spawnInterval = 5f; // Initial time between spawns
+    private float minSpawnInterval = 1f; // Minimum time between spawns
     private float decreaseRate = 0.99f;
     
-    [SerializeField] private float blockSpeed = .01f;
+    [SerializeField] private float blockSpeed = 5f;
     private float timeSinceLastSpawn = 0f;
 
     void Start()
@@ -29,7 +29,7 @@ public class BlockSpawning : MonoBehaviour
             timeSinceLastSpawn = 0f; // Reset timer
 
             // Gradually reduce spawn interval (but never go below the minimum)
-            spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval - Time.deltaTime * decreaseRate);
+            spawnInterval = Mathf.Max(minSpawnInterval, spawnInterval *= decreaseRate);
         }
     }
     
@@ -40,7 +40,7 @@ public class BlockSpawning : MonoBehaviour
         GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
         
         float randomWidth = Random.Range(minWidth, maxWidth);
-        newBlock.transform.localScale = new Vector3(randomWidth, fixedHeight, 0); 
+        newBlock.transform.localScale = new Vector3(randomWidth, fixedHeight, 1); 
         
         BlockMovement movementScript = newBlock.AddComponent<BlockMovement>();
         movementScript.SetSpeed(blockSpeed);

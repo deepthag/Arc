@@ -12,10 +12,14 @@ public class BlockMovement : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
-        
-        if (transform.position.y < -6f) // replace w collision
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other) // if using box collider 2D, use 2D notification
+    {
+        if (other.gameObject.CompareTag("Boundary"))
         {
             Destroy(gameObject);
+            Debug.Log("Block Destroyed");
         }
     }
 }
