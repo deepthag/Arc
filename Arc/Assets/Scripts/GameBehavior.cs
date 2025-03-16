@@ -5,8 +5,10 @@ public class GameBehavior : MonoBehaviour
     public static GameBehavior Instance;
 
     public Utilities.GameplayState State;
-    [SerializeField] private TextMeshProUGUI _pauseMessage;
-    [SerializeField] private TextMeshProUGUI _gameOverMessage;
+    public TextMeshProUGUI _pauseMessage;
+    public TextMeshProUGUI _gameOverMessage;
+    
+    public Player player;
     
     void Awake()
     {
@@ -28,8 +30,6 @@ public class GameBehavior : MonoBehaviour
     
     void Update()
     {
-        // PAUSE
-        
         if ((Input.GetKeyDown(KeyCode.Space)) && State != Utilities.GameplayState.GameOver)
         {
             State = State == Utilities.GameplayState.Play 
@@ -42,8 +42,6 @@ public class GameBehavior : MonoBehaviour
 
     void ResetGame()
     {
-        // RESET TO DEFAULT CONDITIONS 
-        
         State = Utilities.GameplayState.Play;
         _pauseMessage.enabled = false;
         _gameOverMessage.enabled = false;
@@ -53,7 +51,15 @@ public class GameBehavior : MonoBehaviour
     {
         State = Utilities.GameplayState.GameOver;
         _gameOverMessage.enabled = true;
-        _pauseMessage.enabled = false; // Hide pause message if it's on
+        _pauseMessage.enabled = false; 
         Debug.Log("Game Over!");
+    }
+    
+    public void ScorePoint()
+    {
+        if (player != null)
+        {
+            player.Score++;
+        }
     }
 }

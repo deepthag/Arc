@@ -3,6 +3,7 @@ using UnityEngine;
 public class BlockBehavior : MonoBehaviour
 {
     private float speed;
+    private bool pointScored = false;
 
     public void SetSpeed(float newSpeed)
     {
@@ -21,8 +22,15 @@ public class BlockBehavior : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
-            Destroy(gameObject);
-            Debug.Log("Block Destroyed");
+            if (!pointScored)
+            {
+                if (GameBehavior.Instance != null)
+                {
+                    GameBehavior.Instance.ScorePoint(); 
+                    Debug.Log("Point Added");
+                }
+                pointScored = true;  
+            }
         }
     }
 }
