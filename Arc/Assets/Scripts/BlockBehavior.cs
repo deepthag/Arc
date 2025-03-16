@@ -17,7 +17,7 @@ public class BlockBehavior : MonoBehaviour
         }
     }
     
-    private void OnCollisionEnter2D(Collision2D other) // if using box collider 2D, use 2D notification
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Boundary"))
         {

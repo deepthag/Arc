@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public static class Utilities // static keyword allows this script to exist without being instantiated
+public static class Utilities
 {
     public enum GameplayState
     {
         Play, 
-        Pause
+        Pause,
+        GameOver
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 159513368237814994}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -105,7 +105,7 @@ MonoBehaviour:
   minWidth: 0.5
   maxWidth: 3
   fixedHeight: 0.5
-  spawnInterval: 100
+  currentSpawnInterval: 5
   blockSpeed: 0.01
 --- !u!61 &159513368237814994
 BoxCollider2D:

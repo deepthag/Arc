@@ -43,4 +43,15 @@ public class ArcBehavior : MonoBehaviour
         Vector3 directionToCenter = CenterPoint - transform.position;
         transform.up = directionToCenter.normalized;
     }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Block"))
+        {
+            if (GameBehavior.Instance != null)
+            {
+                GameBehavior.Instance.GameOver(); 
+            }
+        }
+    }
 }
