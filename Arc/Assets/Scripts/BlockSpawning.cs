@@ -10,7 +10,7 @@ public class BlockSpawning : MonoBehaviour
     
     [SerializeField] private float currentSpawnInterval = 5f; 
     private float minSpawnInterval = 1f; // 
-    private float decreaseRate = .95f;
+    private float decreaseRate = .5f;
     
     [SerializeField] private float blockSpeed = 5f;
     private float timeSinceLastSpawn;
@@ -40,8 +40,7 @@ public class BlockSpawning : MonoBehaviour
         yield return new WaitForSeconds(currentSpawnInterval);
 
         SpawnRandomBlock();
-
-        // Reduce spawn interval over time but keep it above minSpawnInterval
+        
         currentSpawnInterval = Mathf.Max(minSpawnInterval, currentSpawnInterval * decreaseRate);
             
         _inCoroutine = false;
